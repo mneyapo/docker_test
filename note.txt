@@ -1,0 +1,11 @@
+cd /home/pi/docker_test/docker-Python_Script
+
+docker rm -f $(docker ps -a -q)
+
+docker build -t "docker_test:v1" .
+docker run -v $(pwd):/data --privileged -d docker_test:
+docker run --privileged -d docker_test:v1
+docker run --device /dev/gpiomem -d docker_test:v1
+docker run -v /sys:/sys -d docker_test:v1
+
+-v $(pwd):
